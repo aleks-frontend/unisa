@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html data-sign="OSB" data-input-order="">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+    <!--
+        Input Reordering
+        {{{show-crop}}}
+        {{{UNI_back-logo--fly}}}
+        {{{UNI_back-contact--fly}}}
+        {{UNI_header-background-image--fly}}
+        {{{UNI_header--fly}}}
+		{{UNO_header-front-font-size--fly}}
+        {{{UNI_feature-image--fly}}}
+        {{{UNI_callout-text--fly}}}
+        {{{UNI_callout-colour--fly}}}
+        {{{UNI_primary-logo--fly}}}
+        {{{UNI_support-logo--fly}}}
+        {{{UNI_back-feature-image1--fly}}}
+        {{{UNI_back-feature-image2--fly}}}
+        {{{UNI_back-heading--fly}}}
+        {{{UNI_copy-heading-style--fly}}}
+        {{{UNI_back-copy--fly}}}
+        {{{UNI_back-copy2--fly}}}
+        {{{UNI_back-sidebar-copy--fly}}}
+      -->
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/UniSA-Altis/stylesheet.css');
+
+      :root {
+        --primary: {{{account.colors.primary}}};
+        --light-blue: {{{account.colors.light-blue-tint-1}}};
+        --white: #FFF;
+      }
+
+      ul{
+        list-style: disc;
+      }
+
+      html {
+        font-family: 'Altis UniSA';
+        font-size: 11pt;
+        color: var(--white);
+        word-break: break-word;
+      }
+
+      .backgroundImage {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }      
+
+      /* Helper classes */
+      .u-hide { display: none; }
+
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }
+
+      .reposition-fix div {
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .fit { display: flex; }
+
+      .section {
+        display: flex;
+        flex-direction: column;
+        flex: 0 0 50%;
+      }
+
+      .section--primary {
+        padding: 7.05rem 1.1rem 0.99rem;
+        background-image: url('https://files.outfit.io/media_library_items/105294/Flyer.svg');
+        background-repeat: no-repeat;
+        background-position: right bottom;
+        background-size: 8.7rem;
+        background-color: var(--primary);
+      }
+
+      .section--left {
+        flex: 0 0 63.6%;
+        padding: 1.46rem 0.9rem 5rem 1.1rem;
+        color: var(--primary);
+      }
+
+      .section__inner { flex: 1; }
+
+      .section--right .section__inner { 
+        display: flex;
+        /* align-items: flex-end; */
+      }
+
+      .section--right { 
+        flex: 1;
+        padding: 1.46rem 1rem 7.7rem 0.8rem;
+        background: var(--primary);
+      }
+
+      .section--right h2 {
+        font-family: 'Altis UniSA Light TTF';
+        font-size: 0.46rem;
+        line-height: 1.4em;
+        font-weight: 300;
+      }
+
+      .section--right p, .section--right ul {
+        font-family: 'Altis UniSA Light TTF';
+        font-size: 0.225rem;
+        font-weight: 300;
+      }
+
+      .section--right h2 + p { margin-top: 0.1rem; }
+      .section--right p + p { margin-top: 0.2rem; }
+      .section--right p + h2 { margin-top: 0.6rem; }
+
+      .logo--back { 
+        margin-bottom: 0.57rem;
+        width: 2.27rem;
+      }
+
+      .logo--primary { width: 2.7rem; }
+
+      .logo--secondary {       
+        max-width: 3.1rem;
+        max-height: 1.2rem;
+      }
+
+      .contact__container { 
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        padding-bottom: 0.4rem;
+        justify-content: flex-end;
+      }
+
+      .contact { font-family: 'Altis UniSA Book'; }
+
+      .contact p { 
+        font-size: 0.235rem; 
+        line-height: 1.3em;
+      }
+
+      .contact h4 { 
+        font-size: 0.255rem; 
+        line-height: 1.3em;
+      }
+
+      .contact p + h4 { margin-top: 0.15rem; }
+
+      .info {
+        font-family: 'Altis UniSA Light TTF';
+        font-size: 0.2rem;
+        line-height: 1.7em;
+        font-weight: 300;
+      }
+
+      .section__top {
+        position: relative;
+        height: 7.1rem;
+        padding: 2.3rem 0.7rem 1.2rem;
+        background-color: var(--primary);
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 81%, 0% 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 81%, 0% 100%);
+      }
+
+      .heading {
+        position: relative;
+        line-height: 1em;
+        font-weight: bold;
+      }
+
+      .heading--back { margin-bottom: 0.63rem; }
+
+      .heading--back h1 { 
+        margin-bottom: 0.24rem;
+        font-size: 0.6rem; 
+        line-height: 1em;
+        font-weight: bold;
+      }
+
+      .heading--back h2 {
+        font-family: 'Altis UniSA Light TTF';
+        font-size: 0.448rem;
+        line-height: 1.3em;
+        font-weight: 300;
+      }
+
+      .heading h1{
+        font-weight: bold;
+      }
+
+      .front .heading { font-size: 26pt; }
+
+      .front .heading h1 {
+        font-size: 1em;
+        line-height: 1.1em;
+      }
+
+      .heading h2 {
+        position: relative;
+        font-family: 'Altis UniSA Light TTF';
+        font-size: 0.6em;
+        line-height: 1.3em;
+        font-weight: 300;
+        margin-top: 0.2rem;
+      }
+
+      .front .heading h2 {
+        font-size: 0.82em;
+      }
+
+      .subheading {
+        position: relative;
+        font-family: 'Altis UniSA Light TTF';
+        font-size: 0.6em;
+        line-height: 1.3em;
+        font-weight: 300;
+      }
+
+      .section__middle {
+        margin-top: -1.4rem;
+        flex: 1;
+        padding: 0 0.8rem 0 4.2rem;
+        background: var(--white);
+        -webkit-clip-path: polygon(0 13.3%, 100% 0, 100% 100%, 0 92.7%);
+        clip-path: polygon(0 13.3%, 100% 0, 100% 100%, 0 92.7%);
+        position: relative;
+      }
+
+      .section__bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 2.3rem;
+        padding: 0.3rem 0.75rem 0.4rem;
+      }
+
+      .callout__container {
+        position: relative;
+        padding: 0.89rem 0.3rem 0.3rem; 
+        background: var(--light-blue);
+      }
+
+      .callout {     
+        font-size: 0.214rem;
+        line-height: 1.4em; 
+      }
+
+      .body {
+        display: flex;
+        flex: 1;
+      }
+
+      .footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        height: 6.65rem;
+        width: 100%;
+        background: var(--light-blue);
+        -webkit-clip-path: polygon(0 33%, 100% 0, 100% 100%, 0 100%);
+        clip-path: polygon(0 33%, 100% 0, 100% 100%, 0 100%);
+      }
+
+      .footer--hide { display: none; }
+
+      .featureImage__container {
+        display: flex;
+        flex: 1;
+        -webkit-clip-path: polygon(0 45%, 100% 0, 100% 100%, 0 100%);  
+        clip-path: polygon(0 45%, 100% 0, 100% 100%, 0 100%);
+      }
+
+      .copy {
+        width: 45%;
+      }
+
+      .copyCol1{
+        margin-right: 5%;
+      }      
+
+      .copy h3 {
+        position: relative;
+        margin-bottom: 0.05rem;
+        padding-bottom: 0.1rem;
+        font-size: 0.288rem;
+        line-height: 1.2em;
+      }
+
+      .copy h3 {
+        color:  var(--primary);
+        font-weight: 300;
+      }
+
+      .copyHeadingStyle--style2 h3 {
+        border-bottom: 0.01rem solid var(--primary);
+        font-weight: bold;
+      }
+
+      .copy p {
+        font-family: 'Altis UniSA Light TTF';
+        font-weight: 300;
+        font-size: 0.227rem;
+        color: #000000;
+      }      
+      .copy p + p { margin-top: 0.2rem; }
+      .copy p +h3 { margin-top: 0.37rem; }
+
+      .copyContainer{
+        display: flex;
+      }
+
+      .featureImage {  
+        flex: 1;
+        position: relative;
+      }
+
+      .featureImage--resize {
+        flex: unset;
+        height: 5.6rem;
+        width: 10.9rem;
+        align-self: flex-end;
+      }
+
+      .u-section-right-no-image { padding: 1.46rem 1rem 1rem 0.8rem; }     
+      .u-section-left-no-image { padding: 1.46rem 0.9rem 1rem 1.1rem;}
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" data-crop="{{show-crop}}">
+
+
+    <!-- FRONT PAGE -->
+    <div class="page front">
+
+      <div class="bleed">
+
+        <div class="container fit">
+          <div class="section section--primary"> 
+            <div class="contact__container">
+              {{#UNI_back-logo--fly}}<img src="{{{UNI_back-logo--fly}}}" class="logo logo--back">{{/UNI_back-logo--fly}}
+              {{^UNI_back-logo--fly}}<img src="https://files.outfit.io/media_library_items/105301/Back%2520Logo%2520Flyer.svg" class="logo logo--back">{{/UNI_back-logo--fly}}
+              <div class="contact" data-max-height="295"> {{{UNI_back-contact--fly}}} </div> <!-- contact -->
+            </div> <!-- contact__container -->
+            <div class="info" data-max-line="2">       
+              Information correct at time of printing <span id="currentDate"></span><!--Information correct at time of printing  <span id="currentDate"></span> --> <br>
+              CRICOS provider number OO121B 
+            </div> <!-- info -->
+          </div> <!-- section -->
+          <div class="section"> 
+            <div class="section__top">
+              <div class="backgroundImage">
+                <div class="reposition-fix" > {{{UNI_header-background-image--fly}}} </div> <!-- reposition-fix --> 
+              </div> <!-- backgroundImage -->
+              <div class="heading-top" data-max-height="157" >
+                {{#UNI_header--fly}}
+                <div class="heading unisaFormatter">
+                  <div style="font-size: {{UNO_header-front-font-size--fly}}{{^UNO_header-front-font-size--fly}}130{{/UNO_header-front-font-size--fly}}%">   
+                    {{{UNI_header--fly}}}
+                  </div>
+                </div> <!-- heading -->{{/UNI_header--fly}}               
+              </div> <!-- heading-top -->
+            </div> <!-- section__top -->
+            <div class="section__middle">
+              <div class="backgroundImage">
+                <div class="reposition-fix"> {{{UNI_feature-image--fly}}} </div> <!-- reposition-fix --> 
+              </div> <!-- backgroundImage -->
+              {{#UNI_callout-text--fly}}
+              <div class="callout__container" style="background-color: {{{UNI_callout-colour--fly}}}">
+                <div class="callout" data-max-line="8"> {{{UNI_callout-text--fly}}} </div> <!-- callout -->
+              </div> <!-- callout__container -->
+              {{/UNI_callout-text--fly}}
+            </div> <!-- section__middle -->
+            <div class="section__bottom"> 
+              {{#UNI_primary-logo--fly}}<img src="{{{UNI_primary-logo--fly}}}" class="logo logo--primary" />{{/UNI_primary-logo--fly}}
+              {{^UNI_primary-logo--fly}}<img src="https://files.outfit.io/media_library_items/105297/Front%2520Primary%2520Logo%2520Flyer.svg" class="logo logo--primary" />{{/UNI_primary-logo--fly}}
+              {{#UNI_support-logo--fly}} <img src="{{{UNI_support-logo--fly}}}" class="logo logo--secondary" /> {{/UNI_support-logo--fly}}
+            </div> <!-- section__bottom -->
+          </div> <!-- section -->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+    <!-- FRONT PAGE -->
+    <!-- BACK PAGE -->
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit fit--back">
+          <div class="body"> 
+            <div class="section section--left {{^UNI_back-feature-image1--fly}}{{^UNI_back-feature-image2--fly}}u-section-left-no-image{{/UNI_back-feature-image2--fly}}{{/UNI_back-feature-image1--fly}}"> 
+              <div class="section__inner">
+                <div data-max-height="dynamic">
+                  {{#UNI_back-heading--fly}}
+                  <div class="heading heading--back">
+                    {{{UNI_back-heading--fly}}}
+                  </div> <!-- heading -->
+                  <div class="copyContainer">
+                    <div class="copy copyCol1 copyHeadingStyle--{{UNI_copy-heading-style--fly}}">
+                      {{{UNI_back-copy--fly}}}
+                    </div> <!-- copy -->
+                    <div class="copy copyCol2 copyHeadingStyle--{{UNI_copy-heading-style--fly}}">
+                      {{{UNI_back-copy2--fly}}}
+                    </div> <!-- copy -->
+                  </div>
+                  {{/UNI_back-heading--fly}}
+                </div> <!-- data-max-height -->   
+              </div> <!-- section__inner -->
+            </div> <!-- section -->
+            <div class="section section--right {{^UNI_back-feature-image1--fly}}{{^UNI_back-feature-image2--fly}}u-section-right-no-image{{/UNI_back-feature-image2--fly}}{{/UNI_back-feature-image1--fly}}">
+              <div class="section__inner">
+                <div data-max-height="435">
+                  {{{UNI_back-sidebar-copy--fly}}}
+                </div> <!-- data-max-height -->   
+              </div> <!-- section__inner -->
+            </div> <!-- section -->
+          </div> <!-- body -->
+          <div class="footer {{^UNI_back-feature-image1--fly}}footer--{{/UNI_back-feature-image1--fly}}{{^UNI_back-feature-image2--fly}}hide{{/UNI_back-feature-image2--fly}}" style="background-color: {{{UNI_callout-colour--fly}}};">
+            <div class="featureImage__container">
+              {{#UNI_back-feature-image1--fly}}
+              <div class="featureImage featureImage--left{{#UNI_back-feature-image2--fly}} featureImage--resize{{/UNI_back-feature-image2--fly}}">
+                <div class="reposition-fix"> {{{UNI_back-feature-image1--fly}}} </div> <!-- reposition-fix -->
+              </div> <!-- featureImage -->
+              {{/UNI_back-feature-image1--fly}}
+              {{#UNI_back-feature-image2--fly}}
+              <div class="featureImage featureImage--right">
+                <div class="reposition-fix"> {{{UNI_back-feature-image2--fly}}} </div> <!-- reposition-fix -->
+              </div> <!-- featureImage -->
+              {{/UNI_back-feature-image2--fly}}
+            </div> <!-- featureImage__container -->
+          </div> <!-- footer -->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+    <!-- BACK PAGE -->
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="js/hide-empty-titles.js"></script>
+    <script src="js/dynamic-inject.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+
+    <script>
+
+      function setDate(){
+        var today = new Date();
+        var month= ["January","February","March","April","May","June","July","August","September","October","November","December"];
+        var mm = month[today.getMonth()];
+        var yyyy = today.getFullYear();
+        today = '(' + mm + ' ' + yyyy + ')';
+        document.getElementById('currentDate').innerHTML = today;
+      }
+      setDate();
+
+      /*
+      function loop() {
+        unisaFormat('.heading');
+        unisaFormat('.subheading');
+        unisaFormat('.section--right');
+        unisaFormat('.copy');
+      } setInterval(loop, 1000);  
+      */
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+        });
+      });
+
+      const injectObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          injectDynamicContent();
+        });
+      });      
+
+      const injectSources = document.querySelectorAll('[data-target-id]');
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      if ( injectSources.length > 0 ) {
+        injectSources.forEach(src => {
+          injectObserver.observe(src, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });            
+        });
+      }    
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+        injectDynamicContent();
+      });
+
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+      function detectSystem() {
+        const isMac = window.navigator.appVersion.includes('Mac');
+        if ( isMac ) document.body.classList.add('is-mac');
+      }
+
+      detectSystem();
+
+      function unisaFormat(selector) {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(element => {
+          const elementHTML = element.innerHTML;
+          const formated = elementHTML.replace(/unisa|uni sa/gi, '<span style="text-transform: none;">UniSA</span>');
+
+          element.innerHTML = formated;
+        });
+      }
+
+    </script>
+
+
+  </body>
+</html>
