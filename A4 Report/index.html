@@ -876,10 +876,10 @@
           <div class="backgroundImage u-mix-blend-overlay u-z-1"> <div class="reposition-fix"> {{{UNI_backround-image--rep}}} </div> <!-- reposition-fix --> </div> <!-- backgroundImage -->
           <div class="body body--cover">
             {{#UNI_heading--rep}}
-            <div class="heading js-unisa-format" data-max-line="2"> {{{UNI_heading--rep}}} </div> <!-- heading -->
+            <div class="heading js-unisa-format" data-max-line="2" data-original-input="{{UNI_heading--rep}}"> {{{UNI_heading--rep}}} </div> <!-- heading -->
             {{/UNI_heading--rep}}
             {{#UNI_subheading--rep}}
-            <div class="subheading subheading--primary js-unisa-format" data-max-height="css"> {{{UNI_subheading--rep}}} </div> <!-- heading -->
+            <div class="subheading subheading--primary js-unisa-format" data-max-height="css" data-original-input="{{UNI_subheading--rep}}"> {{{UNI_subheading--rep}}} </div> <!-- heading -->
             {{/UNI_subheading--rep}}
             <img src="{{{UNI_logo--rep}}}" class="logo" />
           </div> <!-- body -->
@@ -901,7 +901,7 @@
         <div class="container fit fit--tableOfContents">
           {{#UNI_heading--rep}}
           <div class="header">
-            <div class="heading heading--tableOfContents js-unisa-format" data-max-line="2"> {{{UNI_heading--rep}}} </div> <!-- heading -->
+            <div class="heading heading--tableOfContents js-unisa-format" data-max-line="2" data-original-input="{{UNI_heading--rep}}"> {{{UNI_heading--rep}}} </div> <!-- heading -->
           </div> <!-- header -->
           {{/UNI_heading--rep}}
           <div class="body body--tableOfContents">
@@ -913,7 +913,7 @@
               <div class="js-table">
               </div> <!-- js-table -->
             </div> <!-- table -->
-            {{#UNI_body-copy--rep}}  <div class="copy copy--tableOfContents js-unisa-format" data-max-height="css"> {{{UNI_body-copy--rep}}} </div> <!-- copy -->{{/UNI_body-copy--rep}}
+            {{#UNI_body-copy--rep}}  <div class="copy copy--tableOfContents js-unisa-format" data-max-height="css" data-original-input="{{UNI_body-copy--rep}}"> {{{UNI_body-copy--rep}}} </div> <!-- copy -->{{/UNI_body-copy--rep}}
           </div> <!-- body -->
         </div><!--container fit-->
 
@@ -931,7 +931,7 @@
         <div class="container fit fit--introduction">
           <div class="header header--introduction {{^UNI_heading--rep}}no-heading{{/UNI_heading--rep}} {{^UNI_subheading--rep}}no-subheading{{/UNI_subheading--rep}}"> 
             <div class="js-src">{{{UNI_contents-page-title--rep}}}</div>
-            {{#UNI_heading--rep}} <div class="heading heading--introduction js-unisa-format" data-max-line="2"> {{{UNI_heading--rep}}} </div> <!-- heading --> {{/UNI_heading--rep}}
+            {{#UNI_heading--rep}} <div class="heading heading--introduction js-unisa-format" data-max-line="2" data-original-input="{{UNI_heading--rep}}"> {{{UNI_heading--rep}}} </div> <!-- heading --> {{/UNI_heading--rep}}
             {{#UNI_subheading--rep}} <div class="subheading subheading--introduction" data-max-height="css"> {{{UNI_subheading--rep}}} </div> <!-- subheading --> {{/UNI_subheading--rep}}
           </div> <!-- header -->
           <div class="body body--introduction"> 
@@ -961,7 +961,7 @@
         <div class="container fit fit--introduction">
           <div class="header header--introduction u-text-transform-uppercase {{^UNI_heading--rep}}no-heading{{/UNI_heading--rep}} {{^UNI_subheading--rep}}no-subheading{{/UNI_subheading--rep}}"> 
             <div class="js-src">{{{UNI_contents-page-title--rep}}}</div>
-            {{#UNI_heading--rep}} <div class="heading heading--introduction js-unisa-format" data-max-line="2"> {{{UNI_heading--rep}}} </div> <!-- heading --> {{/UNI_heading--rep}}
+            {{#UNI_heading--rep}} <div class="heading heading--introduction js-unisa-format" data-max-line="2" data-original-input="{{UNI_heading--rep}}"> {{{UNI_heading--rep}}} </div> <!-- heading --> {{/UNI_heading--rep}}
             {{#UNI_subheading--rep}} <div class="subheading subheading--introduction" data-max-height="css"> {{{UNI_subheading--rep}}} </div> <!-- subheading --> {{/UNI_subheading--rep}}
           </div> <!-- header -->
           <div class="body body--introduction"> 
@@ -989,8 +989,8 @@
         <div class="container fit fit--heavyCase">
           <div class="header header--heavyCase {{^UNI_heading--rep}}no-heading{{/UNI_heading--rep}} {{^UNI_subheading--rep}}no-subheading{{/UNI_subheading--rep}}"> 
             <div class="js-src">{{{UNI_contents-page-title--rep}}}</div>
-            {{#UNI_heading--rep}} <div class="heading heading--heavyCase js-unisa-format" data-max-line="2"> {{{UNI_heading--rep}}} </div> <!-- heading --> {{/UNI_heading--rep}}
-            {{#UNI_subheading--rep}} <div class="subheading subheading--heavyCase" data-max-height="css"> {{{UNI_subheading--rep}}} </div> <!-- subheading --> {{/UNI_subheading--rep}}
+            {{#UNI_heading--rep}} <div class="heading heading--heavyCase js-unisa-format" data-max-line="2" data-original-input="{{UNI_heading--rep}}"> {{{UNI_heading--rep}}} </div> <!-- heading --> {{/UNI_heading--rep}}
+            {{#UNI_subheading--rep}} <div class="subheading subheading--heavyCase" data-max-height="css" data-original-input="{{UNI_subheading--rep}}"> {{{UNI_subheading--rep}}} </div> <!-- subheading --> {{/UNI_subheading--rep}}
           </div> <!-- header -->
           <div class="body body--heavyCase featureImagePosition--{{UNI_feature-image-position--rep}}{{^UNI_feature-image-position--rep}}topLeft{{/UNI_feature-image-position--rep}}">
             {{#UNI_feature-image--rep}}
@@ -1015,7 +1015,7 @@
                   {{/block.UNI_image--rep}}
                   {{#block.UNI_text--rep}}
                   <div class="content__textContainer content__count">
-                    <div class="content__text js-unisa-format"> {{{UNI_text--rep}}} </div> <!-- content__text -->
+                    <div class="content__text js-unisa-format" data-original-input="{{UNI_text--rep}}"> {{{UNI_text--rep}}} </div> <!-- content__text -->
                   </div> <!-- content__textContainer -->
                   {{/block.UNI_text--rep}}
                   {{/collection.UNI_content-block--rep}}
@@ -1042,7 +1042,7 @@
         <div class="container fit fit--itinerary">
           <div class="header header--itinerary {{^UNI_heading--rep}}no-heading{{/UNI_heading--rep}}{{^UNI_subheading--rep}}no-subheading{{/UNI_subheading--rep}}">
             <div class="js-src">{{{UNI_contents-page-title--rep}}}</div>
-            {{#UNI_heading--rep}} <div class="heading heading--itinerary js-unisa-format" data-max-line="2"> {{{UNI_heading--rep}}} </div> <!-- heading --> {{/UNI_heading--rep}}
+            {{#UNI_heading--rep}} <div class="heading heading--itinerary js-unisa-format" data-max-line="2" data-original-input="{{UNI_heading--rep}}"> {{{UNI_heading--rep}}} </div> <!-- heading --> {{/UNI_heading--rep}}
             {{#UNI_subheading--rep}} <div class="subheading subheading--itinerary" data-max-height="css"> {{{UNI_subheading--rep}}} </div> <!-- subheading --> {{/UNI_subheading--rep}}
           </div> <!-- header -->
           <div class="body"> 
@@ -1073,8 +1073,8 @@
           <div class="header header--inside {{^UNI_heading--rep}}no-heading{{/UNI_heading--rep}} {{^UNI_subheading--rep}}no-subheading{{/UNI_subheading--rep}}">
             <div class="js-src">{{{UNI_contents-page-title--rep}}}</div>
             {{#UNI_heading--rep}}
-            <div class="heading heading--inside js-unisa-format">
-              <div data-max-height="dynamic"> {{{UNI_heading--rep}}} </div> <!-- data-max-height -->
+            <div class="heading heading--inside js-unisa-format" data-original-input="{{UNI_heading--rep}}">
+              <div data-max-height="dynamic">{{{UNI_heading--rep}}}</div> <!-- data-max-height -->
             </div> <!-- heading -->
             {{/UNI_heading--rep}}
             {{#UNI_subheading--rep}}
@@ -1154,7 +1154,7 @@
           <img src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/bdccc82295c4a240c8d341cc7f2d7aae/1234.svg" class="graphicShape" />
           <div class="body body--backPage"> 
             {{#UNI_logo--rep}} <img src="{{{UNI_logo--rep}}}" class="logo logo--backPage" /> {{/UNI_logo--rep}}
-            {{#UNI_copy--rep}} <div class="copy copy--backPage js-unisa-format" data-max-line="15"> {{{UNI_copy--rep}}} </div> <!-- copy --> {{/UNI_copy--rep}}
+            {{#UNI_copy--rep}} <div class="copy copy--backPage js-unisa-format" data-max-line="15" data-original-input="{{UNI_copy--rep}}">{{{UNI_copy--rep}}}</div> <!-- copy --> {{/UNI_copy--rep}}
             {{#UNI_url--rep}} <a class="url" data-max-line="1" href="https://unisa.edu.au/" target="_blank">{{{UNI_url--rep}}} </a> <!-- url -->  {{/UNI_url--rep}}
             {{#UNI_further-details--rep}} <div class="furtherDetails" data-max-line="6"> {{{UNI_further-details--rep}}} </div> <!-- furtherDetails --> {{/UNI_further-details--rep}} 
           </div> <!-- body -->
