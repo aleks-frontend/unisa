@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html data-sign="OSM">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/UniSA-Altis/stylesheet.css');
+
+      :root {
+        --white: #fff;
+        --blue: {{{account.colors.primary}}};
+        --grey: #231f20;      
+      }
+
+      html {
+        font-family: 'Altis UniSA';;
+        font-size: 11pt;
+        color: #000;
+        word-break: break-word;
+      }
+
+      strong {
+        font-weight: bold;
+      }
+
+      .backgroundImage {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }      
+
+      /* Helper classes */
+      .u-hide { display: none; }
+
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .reposition-fix div {
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .backPage--hide .page--2 {
+        display: none;
+      }
+
+      .header {
+        position: relative;
+        background: url(https://files.outfit.io/media_library_items/105698/Heading-image.png) no-repeat;
+        background-position: center bottom;
+        background-size: 100% 100%;
+        height: 276pt;
+        padding-left: 55pt;
+        display: flex;
+        align-items: center;
+        z-index: 1;
+      }
+
+      .heading {
+        margin-top: -19pt;
+        max-width: 400pt;
+      }
+
+      .heading h1 {
+        font-size: 29.8pt;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: var(--white);
+      }
+
+      .heading h2 {
+        font-family: 'Altis UniSA Book';
+        font-size: 18.9pt;
+        font-style: italic;
+        line-height: 1.3em;
+        color: var(--white);
+      }
+
+      .logo {
+        position: absolute;
+        top: 19pt;
+        right: 23pt;
+        width: 132pt;
+        height: 126pt;
+        object-fit: contain;
+      }
+
+      .body {
+        display: flex;
+        flex: 1;
+      }
+
+      .body--primary {
+        margin-top: -29pt;
+      }
+
+      .body--secondary {
+        flex-direction: column;
+        padding: 0;   
+        clip-path: none;
+        background: #fff;
+      }
+
+      .body--horizontal {
+        flex-direction: row;
+      }
+
+      .body--horizontal.position-left {
+        flex-direction: row-reverse;
+      }
+
+      .body--horizontal .body__main {
+        width: 226pt;
+        column-count: 1;      
+      }
+
+      .position-left .body__main--secondary {
+        padding: 91pt 51pt 31pt 18pt; 
+      }
+
+      .body--vertical {
+        flex-direction: column;
+      }
+
+      .body--vertical .body__main {
+        height: 436pt;
+      }
+
+      .body--vertical .body__main--secondary  {
+        flex: 1;
+        padding: 91pt 50pt 31pt 51pt;
+      }
+
+      .body__column {
+        flex: 1;
+        margin-left: 27pt;
+      }
+
+      .body__column:first-child {
+        margin-left: 0;
+      }
+
+      .body__column--2 {
+        display: none;
+      }
+
+      .body--vertical .body__column .max-height {
+        max-height: 7rem;
+      }
+
+      .body__top {         
+        display: flex;
+        justify-content: space-between;         
+        flex-shrink: 0;
+        height: 238pt;
+      }
+
+      .body__main {   
+        display: flex;
+        height: 300pt;
+        margin-top: 43pt;
+        font-size: 10pt;    
+      }
+
+      .body__main--secondary {
+        height: auto;
+        margin-top: 0;
+        padding: 91pt 18pt 48pt 51pt;
+      }
+
+      .body__main h1,
+      .body__main h2 {
+        color: var(--blue);
+        text-transform: uppercase;
+        line-height: 1.2em;    
+      }
+
+      .body__main h1 {
+        margin-bottom: 4pt;      
+        font-size: 12.4pt;     
+      }
+
+      .body__main h2 {
+        margin-bottom: 2pt;
+        font-size: 8.2pt;   
+      }
+
+      .body__main p {
+        margin-bottom: 5pt;
+        font-size: 8pt;
+        font-family: 'Altis UniSA Book';
+        line-height: 1.45em;
+      }   
+
+      .body__main p + h1,
+      .body__main p + h2 {
+        margin-top: 24pt;
+      }
+
+      .body__main ul + p {
+        margin-top: 17pt;
+      }
+
+      .body__main p + ul {
+        margin-top: 17pt
+      }
+
+      .body__main ul {
+        list-style: none;   
+        font-family: 'Altis UniSA Book';
+      }
+
+      .body__main li {
+        position: relative;
+        margin-left: 3pt;
+        margin-bottom: 0.2pt;
+        padding-left: 8pt;
+        font-size: 8pt;
+        line-height: 1.35em;
+      }
+
+      .body__main li:last-child {
+        margin-bottom: 0;
+      }
+
+      .body__main li::before {
+        content: '\2022';
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      .body__main p:last-child {
+        margin-bottom: 0;
+      }
+
+      .hero {
+        flex: 1;
+        flex-shrink: 0;
+        position: relative;
+        overflow: hidden;      
+      }
+
+      .body--vertical .hero {
+        flex: none;
+        height: 276pt;
+      }
+
+      .u-body__columnMargin--3 {
+        margin-left: 15pt;
+      }
+
+      .body--vertical .u-hero-hide {
+        display: none;
+      }
+
+      .body--horizontal .u-body__column--hide {
+        display: none;
+      }
+
+      .hero__caption {
+        position: absolute;
+        right: 0pt;
+        bottom: 31pt;
+        max-width: 249pt;
+        padding: 4pt 47.9pt 4pt 8.5pt;
+        font-family: 'Altis UniSA Book';
+        font-style: italic;
+        font-size: 6.9pt;  
+        text-align: right;
+        color: #fff;       
+        background: rgba(0,0,0,0.47);
+      }
+
+      .main {
+        width: 338pt;
+        padding: 16pt 13pt 31pt 41pt;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .copy h3 {
+        margin-bottom: 8pt;
+        font-size: 12.2pt;
+        text-transform: uppercase;
+        color: var(--blue);
+        line-height: 1.3em;
+      }
+
+      .copy ul {
+        margin-bottom: 7pt;
+        padding-left: 11pt;
+        font-size: 8.6pt;
+      }
+
+      .copy li {
+        position: relative;
+        margin-bottom: 4.2pt;
+        font-size: 8.6pt;
+        line-height: 1.3em;
+      }
+
+      .copy li:before {
+        content: '';
+        position: absolute;
+        top: 4pt;
+        left: -12pt;
+        width: 2pt;
+        height: 2pt;
+        background-color: var(--grey);
+        border-radius: 50%;
+      }
+
+      .copy p {
+        margin-bottom: 10.1pt;
+        font-size: 8.6pt;
+        line-height: 1.3em;
+      }
+
+      .copy ul:last-child,
+      .copy li:last-child, 
+      .copy h3:last-child,
+      .copy p:last-child {
+        margin-bottom: 0;
+      }
+
+      .side { 
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        background-color: #7d909b;
+      }
+
+      .featureImage {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .featureImage__caption {
+        padding: 4pt 47.9pt 4pt 8.5pt;
+        font-family: 'Altis UniSA Book';
+        font-style: italic;
+        font-size: 6.9pt;  
+        text-align: right;   
+        color: var(--white);
+        background: rgba(0,0,0,0.47);
+      }
+
+      .quote__container {
+        padding: 14pt 0 31pt 31pt;
+        flex: 1;
+        font-size: 22pt;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+
+      .quote__inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        height: 100%
+      }
+
+      .quote {
+        position: relative;
+        padding: 33pt 12pt 19pt 14pt;
+        background: #a1dcef;
+        margin-bottom: 30pt;
+      }
+
+      .quote:before,
+      .quote:after {
+        content: '';
+        position: absolute;
+        width: 31pt;
+        height: 35pt;
+        background-size: 100%;
+        background-repeat: no-repeat;
+      }
+
+      .quote:before {
+        top: 0pt;
+        left: -7pt;
+        background-image: url(https://files.outfit.io/media_library_items/106478/quote1.svg);
+      }
+
+      .quote:after {
+        bottom: -17pt;
+        right: -1pt;
+        background-image: url(https://files.outfit.io/media_library_items/106479/quote2.svg);
+      }
+
+      .quoteVisibility--hide .quote {
+        display: none;
+      }
+
+      .quote__triangle {
+        position: absolute;
+        bottom: -14pt;
+        left: 46pt;
+        width: 29pt;
+        height: 29pt;
+        background: #a1dcef;
+        transform: rotate(45deg);
+      }
+
+      .quote__text {
+        font-size: 10pt;
+        line-height: 1.3em;
+      }
+
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        padding: 31pt 19pt 20pt 57pt;
+        height: 150pt;
+        background: url(https://files.outfit.io/media_library_items/47972/footer-bg-DS-both.jpg) no-repeat;
+        background-position: center bottom;
+        background-size: 100% 100%;
+      }
+
+      .footer a {
+        color: var(--white);
+        text-decoration: none;
+      }
+
+      .footer--primary {
+
+      }
+      /*
+      .footer--secondary {  
+      padding: 26.7pt 51.3pt 30pt;
+      height: 147.5pt;
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+      background: url(https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/12114d52579dea93ef5ef5f632012cad/footer-bg-DS-both.jpg) no-repeat bottom right;
+      background-size: cover;
+      }
+      */
+      .footer__col {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+      }
+      /*
+      .footer__col--primary {
+      justify-content: flex-start;
+      width: 245pt;
+      font-size: 13pt;       
+      }
+
+      .footer__col--secondary {
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 200pt;
+      text-align: right;       
+      }
+
+      .cta {
+      margin-bottom: 4pt;
+      line-height: 1.2;  
+      font-size: 13.4pt;
+      }
+
+      .footer__info {
+      font-family: 'Altis UniSA Book';
+      }
+
+      .footer__disclaimer {
+      font-size: 5.85pt;
+      font-family: 'Altis UniSA Book';
+      font-style: italic;
+      line-height: 1.5em;
+      }
+
+      .footer__url {
+      position: relative;
+      font-size: 15pt;
+      font-weight: bold;
+      font-style: italic;
+      }
+      */      
+      .url {
+        position: relative;
+        font-size: 15pt;
+        font-weight: bold;
+        font-style: italic;
+        text-align: right;
+        color: var(--white);
+      }
+
+      .contact {
+        width: 213pt;
+        margin-right: 30pt;
+        font-size: 15pt;
+        color: var(--white);
+      }
+
+      .contact h3 {
+        margin-bottom: 6pt;
+        font-size: 11.1pt;
+        line-height: 1.2em;
+        color: var(--white);
+      }
+
+      .contact p {
+        font-family: 'Altis UniSA Book';
+        font-size: 10.8pt;
+        line-height: 1.3em;
+        color: var(--white);
+      }
+
+      .disclaimer {
+        flex: 1;
+        margin-top: 6pt;
+        text-align: right;
+        font-size: 15pt;
+      }
+
+      .disclaimer p {
+        margin-bottom: 3pt;
+        font-family: 'Altis UniSA Book';
+        font-size: 7pt;
+        font-style: italic;
+        color: var(--white);
+        line-height: 1.2em;
+      }
+
+      .disclaimer p:last-child {
+        margin-bottom: 0;
+      }
+
+      .autoDisclaimer {
+        margin-bottom: 5pt;
+        text-align: right;
+        font-size: 7pt;
+        color: var(--white);
+        line-height: 1.2em;
+      }
+
+      .u-mt-15 { margin-top: 15pt; }
+
+      .u-mr-10 { margin-right: 10pt; }
+
+
+
+
+      .backPage--show .footer.footer-small{
+        justify-content: flex-end;
+        align-items: center;
+        height: 59.5pt;
+        padding: 0 51pt 0;
+        display:flex;
+      }
+
+      .backPage--show .footer.footer-large{
+        display: none;
+      }
+
+      .backPage--hide .footer.footer-small{
+        display:none !important;
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholder-toggle-new }}{{^placeholder-toggle-new}}hide{{/placeholder-toggle-new}}
+                                         quoteVisibility--{{{UNI_quote-visibility--dsf1}}}{{^UNI_quote-visibility--dsf1}}show{{/UNI_quote-visibility--dsf1}}
+                                         backPage--{{{UNI_back-page-toggle--dsf1}}}
+                                         " data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      {{#placeholder-image-1}}
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+      {{/placeholder-image-1}}
+      {{#placeholder-image-2}}
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-2 }}"></div>
+      {{/placeholder-image-2}}
+    </div><!-- end placeholderMaster -->
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+
+          <div class="header">
+            <div class="heading" data-max-height="155">{{{UNI_heading--dsf1}}}</div><!--heading-->
+            <img class="logo" src="{{{account.logos.white_portrait}}}">
+          </div><!--header-->
+          <div class="body body--primary">
+            <div class="main">
+              <div class="copy" data-max-height="dynamic">{{{UNI_body-copy--dsf1}}}</div><!--copy-->
+            </div><!--main-->
+            <div class="side">
+              {{#UNI_feature-image--dsf1}}
+              <div class="featureImage u-mb-15"><div class="reposition-fix">{{{UNI_feature-image--dsf1}}}</div></div><!--featureImage-->
+              {{#UNI_feature-image--dsf1}}
+              {{/UNI_feature-image--dsf1}}
+              {{/UNI_feature-image--dsf1}}
+              <div class="quote__container">
+                <div class="quote__inner" >
+                  {{#UNI_quote--dsf1}}
+                  <div class="quote">
+                    <div class="quote__triangle"></div><!--quote__triangle-->
+                    <div class="quote__text" data-max-height="58">{{{UNI_quote--dsf1}}}</div><!--quote__text-->
+                  </div><!--quote-->
+                  {{/UNI_quote--dsf1}}
+                  <div class="featureImage__caption" data-max-height="65">{{{UNI_image-caption--dsff1}}}</div><!--featureImage__caption-->
+                </div><!--quote__inner-->
+              </div><!--quote__container-->
+            </div><!--side-->
+          </div><!--body-->
+          <div class="footer footer-large">
+            <div class="footer__col">
+              <div class="contact" data-max-height="dynamic">{{{UNI_contact--dsf1}}}</div><!--contact-->
+            </div><!--footer__col-->
+            <div class="footer__col" data-max-height="dynamic">
+              <div class="disclaimer">{{{UNI_disclaimer--dsf1}}}</div><!--disclaimer-->
+              <div class="autoDisclaimer">Information correct at time of printing <span class="js-date-target"></span> <br>
+                <div class="cricos">{{{UNI_cricos--dsf1}}}</div><!--cricos-->
+              </div><!--autoDisclaimer-->
+              <div class="url">{{{ UN_url--dsf1 }}}</div><!--url-->
+            </div><!--footer__col-->
+          </div><!--footer-->
+          <div class="footer footer-small">
+            <div class="url">{{{ UN_url--dsf1 }}}</div><!--url-->
+          </div><!--footer-->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+
+    <!--page 2-->
+    <div class="page page--2">
+
+      <div class="bleed center-children">
+
+        <div class="container fit">
+
+          <div class="body body--secondary {{ UN_page-layout--fds }}{{^UN_page-layout--fds }}body--horizontal{{/UN_page-layout--fds }} {{UN_image-position--fds}}{{^UN_image-position--fds}}position-right{{/UN_image-position--fds}}">
+            <div class="body__main body__main--secondary body__main--{{{ UN_copy-columns--fds }}}{{^UN_copy-columns--fds }}2{{/UN_copy-columns--fds }} ">
+              <div class="body__column"  data-max-height="dynamic">
+                {{{ UN_back-page-column-1-copy--fds }}}
+              </div> <!-- body__column -->
+              <div class="body__column u-body__column--hide" data-max-height="dynamic">
+                {{{ UN_back-page-column-2-copy--fds }}}
+              </div> <!-- body__column -->
+              <div class="body__column  body__column--{{{UN_copy-columns--fds}}}{{^UN_copy-columns--fds}}2{{/UN_copy-columns--fds}} u-body__column--hide" data-max-height="dynamic">
+                {{{ UN_back-page-column-3-copy--fds }}}
+              </div> <!-- body__column -->
+            </div><!--body__main-->
+            <div class="hero {{^UN_hero-image--fds }}u-hero-hide{{/UN_hero-image--fds}}">
+              <div class="reposition-fix">{{{ UN_hero-image--fds }}}</div><!--reposition-fix-->
+              {{#UN_caption--fds}}
+              <div class="hero__caption"><div data-max-line="4">{{{ UN_caption--fds }}}</div></div><!--hero__caption-->
+              {{/UN_caption--fds}}
+            </div><!--hero-->
+          </div><!--body-->
+          <div class="footer">
+            <div class="footer__col">
+              <div class="contact" data-max-height="dynamic">{{{UNI_contact--dsf1}}}</div><!--contact-->
+            </div><!--footer__col-->
+            <div class="footer__col" data-max-height="dynamic">
+              <div class="disclaimer">{{{UNI_disclaimer--dsf1}}}</div><!--disclaimer-->
+              <div class="autoDisclaimer">Information correct at time of printing <span class="js-date-target"></span> <br>
+                <div class="cricos">{{{UNI_cricos--dsf1}}}</div><!--cricos-->
+              </div><!--autoDisclaimer-->
+              <div class="url">{{{ UN_url--dsf1 }}}</div><!--url-->
+            </div><!--footer__col-->
+          </div><!--footer-->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="js/hide-empty-titles.js"></script>
+    <script src="js/dynamic-inject.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+
+
+      function dateInject() {
+        const today = new Date();
+        const month= ["January","February","March","April","May","June","July","August","September","October","November","December"];
+        const mm = month[today.getMonth()];
+        const yyyy = today.getFullYear();
+        const targets = document.querySelectorAll('.js-date-target');
+        const dateString = `(${mm} ${yyyy})`;
+
+        targets.forEach(target => {
+          target.innerText = dateString;
+        });        
+      }
+
+      dateInject();
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+        });
+      });
+
+      const injectObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          injectDynamicContent();
+        });
+      });      
+
+      const injectSources = document.querySelectorAll('[data-target-id]');
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      if ( injectSources.length > 0 ) {
+        injectSources.forEach(src => {
+          injectObserver.observe(src, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });            
+        });
+      }    
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+        injectDynamicContent();
+      });
+
+      placeholderController();
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+      function detectSystem() {
+        const isMac = window.navigator.appVersion.includes('Mac');
+        if ( isMac ) document.body.classList.add('is-mac');
+      }
+
+      detectSystem();
+
+    </script>
+
+
+  </body>
+</html>
