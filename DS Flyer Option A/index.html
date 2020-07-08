@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html data-sign="OSL" async>
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="placeholder-controller.css">
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/UniSA-Altis/stylesheet.css');
+
+      html {
+        font-family: 'Altis UniSA';
+        font-size: 11pt;
+        color: #000;
+      }
+
+      .overflow {
+        border: none;
+        box-shadow: 0 0 0 0.0362rem red;
+        background: rgba(255, 0, 0, 0.4);
+        position: relative;
+        z-index: 999;}
+      .overflow h1, 
+      .overflow h2, 
+      .overflow h3, 
+      .overflow h4, 
+      .overflow h5, 
+      .overflow h6, 
+      .overflow p, 
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: '+';
+        position: absolute;
+        z-index: 5;
+        top: 0.1rem;
+        right: 0.1rem;
+        height: .3107rem;
+        width: .3107rem;
+        border: 0.01rem solid red;
+        color: red;
+        padding: 0.01rem 0.01rem 0.01rem 0.0155rem;
+        box-sizing: border-box;
+        font-size: 0.2279rem;
+        text-align: center;
+        line-height: .2693rem;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: 'There is overset content in this column. Please remove it';
+        position: absolute;
+        top: 0.5rem;
+        right:  0.1rem;
+        background-color: black;
+        color: white;
+        border-radius: 0.01rem;
+        padding: 0.2rem 0.2rem;        
+        box-sizing: border-box;
+        font-size: 0.35rem;
+        font-weight: 400;     
+        text-align: right;
+        width: 6rem;
+        line-height: 0.45rem;
+      }
+
+      .overflow[data-char-limit]:hover:after {
+        content: 'Character limit exceeded';        
+      } 
+
+      .is-export-mode .placeholder__container,
+      .is-export-mode .placeholder__trigger {
+        display: none;
+      }  
+
+      :root {
+        --textBlue: #37468e;
+      }
+
+      .fit {
+        display: flex;
+        flex-direction: column;
+        background: url(https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/6c13d35fe166a545d4b97477b92654e0/flyer-bg-top.jpg) no-repeat top center;
+        background-size: 99% auto;
+      }
+
+      .graphicShape {
+        position: absolute;
+        mix-blend-mode: multiply;
+      }      
+
+      .graphicShape--primary {
+        top: -187.5pt;
+        left: 21pt;
+        width: 105%;
+      }   
+
+      .graphicShape--secondary {
+        top: -250px;
+        left: 206pt;
+        width: 66%;
+      }     
+
+      .graphicShape--tertiary {
+        top: -182pt;
+        left: 206pt;
+        width: 78%;
+        max-width: none;
+      }
+
+      .header {
+        position: relative;
+        height: 212.3pt;      
+        padding: 72pt 162pt 0 51pt;
+        color: #fff;
+      }
+
+      .preheading {
+        margin-bottom: 2pt;
+        font-size: 19.2pt;
+        font-family: 'Altis UniSA Book';
+        font-style: italic;
+      }
+
+      .heading {
+        font-size: 30.3pt;
+        line-height: 1.2em;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      .logo__container {
+        position: absolute;
+        top: 23.7pt;
+        right: 19pt;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 132pt;
+        height: 132pt;     
+      }
+
+      .logo {
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      .body {
+        display: flex;
+        flex-direction: column;
+        flex: 1;    
+        padding: 0 51pt;   
+        clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
+        background: #fff;
+      }
+
+      .body--secondary {
+        clip-path: none;
+        padding: 0;
+      }
+
+      .body--horizontal {
+        flex-direction: row;
+      }
+
+      .body--horizontal.position-left {
+        flex-direction: row-reverse;
+      }
+
+      .body--horizontal .body__main .max-height {
+        max-height: 58em;
+      }
+
+      .body--horizontal .body__main {
+        width: 226pt;
+        column-count: 1;      
+      }
+
+      .position-left .body__main--secondary {
+        padding: 91pt 51pt 48pt 18pt; 
+      }
+
+      .body--vertical {
+        flex-direction: column
+      }
+
+      .body--vertical .body__main {
+        height: 436pt;
+      }
+
+      .body--vertical .body__main--secondary  {
+        flex: 1;
+        padding: 91pt 50pt 45pt 51pt;
+      }
+
+
+      .body__column {
+        flex: 1;
+        margin-left: 27pt;
+      }
+
+      .body__column:first-child {
+        margin-left: 0;
+      }
+
+      .body__column--2 {
+        display: none;
+      }
+
+      .body--vertical .body__column .max-height {
+        max-height: 7rem;
+      }
+
+      .body__top {         
+        display: flex;
+        justify-content: space-between;         
+        flex-shrink: 0;
+        height: 238pt;
+      }
+
+      .intro__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 336pt;
+        padding-top: 90pt;      
+      }
+
+      .intro__item {
+        padding: 5pt 0;            
+        border-bottom: 1pt solid black;
+        font-size: 10pt;    
+        font-family: 'Altis UniSA Book';
+      }
+
+      .intro__item:first-child {
+        border-top: 1pt solid black;
+      }
+
+      .intro__disclaimer {
+        font-size: 8pt;
+        font-weight: 300;
+        font-style: italic;
+        line-height: 1.3em;
+        color: var(--textBlue);
+      }
+
+      .snapshot__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        width: 161pt;
+        margin-bottom: 2pt;
+        padding: 11.4pt 14pt;        
+        background: #8e969c;    
+      }
+
+      .snapshot {
+        font-size: 10pt;
+        color: #fff;
+      }
+
+      .snapshot h1 {
+        margin-bottom: 5pt;
+        font-size: 12.4pt;       
+      }
+
+      .snapshot h1:last-child,
+      .snapshot p:last-child {
+        margin-bottom: 0;
+      }
+
+      .snapshot p {
+        margin-bottom: 5pt;
+        font-size: 8pt;
+        font-family: 'Altis UniSA Book';
+        line-height: 1.5em;      
+      }
+
+      .body__main {   
+        display: flex;
+        height: 300pt;
+        margin-top: 43pt;
+        font-size: 10pt;    
+      }
+
+      .body__main--secondary {
+        height: auto;
+        margin-top: 0;
+        padding: 91pt 18pt 48pt 51pt;
+      }
+
+
+      .body__main h1,
+      .body__main h2 {
+        color: var(--textBlue);
+        text-transform: uppercase;
+        line-height: 1.2em;      
+      }
+
+      .body__main h1 {
+        margin-top: 13pt;
+        margin-bottom: 4pt;      
+        font-size: 12.4pt;     
+      }
+
+      .body__main h1:first-child,
+      .body__main h2:first-child {
+        margin-top: 0;
+      }
+
+      .body__main h2 {
+        margin-top: 10pt;
+        margin-bottom: 2.4pt;
+        font-size: 8.2pt;   
+      }
+
+      .body__main h1 + h2 {
+        margin-top: 5pt;
+      }
+
+      .body__main p {
+        font-size: 8pt;
+        font-family: 'Altis UniSA Book';
+        line-height: 1.3em;
+      }   
+
+      .body__main--secondary p {
+        line-height: 1.41em;
+      }
+
+      .body__main ul {
+        margin-top: 2.8pt;
+        margin-bottom: 6.1pt;
+        list-style: none;   
+        font-family: 'Altis UniSA Book';
+      }
+
+      .body__main li {
+        position: relative;
+        margin-left: 3pt;
+        margin-bottom: 0.2pt;
+        padding-left: 8pt;
+        font-size: 8pt;
+        line-height: 1.35em;
+      }
+
+      .body__main li:last-child {
+        margin-bottom: 0;
+      }
+
+      .body__main li::before {
+        content: '\2022';
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      .hero {
+        flex: 1;
+        flex-shrink: 0;
+        position: relative;
+        overflow: hidden;      
+      }
+
+      .body--vertical .hero {
+        flex: none;
+        height: 276pt;
+      }
+
+
+      .hero__caption {
+        position: absolute;
+        right: 0pt;
+        bottom: 16.3pt;
+        width: 249pt;
+        padding: 4pt 47.9pt 4pt 8.5pt;
+        font-family: 'Altis UniSA Book';
+        font-style: italic;
+        font-size: 6.9pt;  
+        text-align: right;
+        color: #fff;       
+        background: rgba(0,0,0,0.47);
+      }
+
+      .footer {
+        display: flex;
+        position: relative;
+        overflow: hidden;
+        color: #fff;
+        background: url(https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/12114d52579dea93ef5ef5f632012cad/footer-bg-DS-both.jpg) no-repeat bottom right;
+        background-size: cover;
+      }
+
+      .footer--primary {
+        justify-content: flex-end;
+        align-items: center;
+        height: 59.5pt;
+        padding: 0 51pt 13pt;
+      }
+
+      .footer--secondary {  
+        justify-content: space-between;
+        height: 147.5pt;
+        padding: 26.7pt 51.3pt 30pt;
+      }
+
+      .footer a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .footer__col {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .footer__col--primary {
+        justify-content: flex-start;
+        width: 245pt;
+        font-size: 13pt;       
+      }
+
+      .footer__col--secondary {
+        justify-content: space-between;
+        align-items: flex-end;
+        width: 200pt;
+        text-align: right;       
+      }
+
+      .cta {
+        margin-bottom: 4pt;
+        line-height: 1.2;  
+        font-size: 13.4pt;
+      }
+
+      .footer__info {
+        font-family: 'Altis UniSA Book';
+      }
+
+      .footer__disclaimer {
+        font-size: 5.85pt;
+        font-family: 'Altis UniSA Book';
+        font-style: italic;
+        line-height: 1.5em;
+      }
+
+      .footer__url {
+        position: relative;
+        font-size: 15pt;
+        font-weight: bold;
+        font-style: italic;
+      }
+
+      .u-body__columnMargin--3 {
+        margin-left: 15pt;
+      }
+
+      .body--vertical .u-hero-hide {
+        display: none;
+      }
+
+      .body--vertical .body__column .max-height.u-max-height {
+        max-height: 13.5rem;
+      }
+
+      .body--horizontal .u-body__column--hide {
+        display: none;
+      }
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="{{ placeholder-toggle }}" data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      {{#placeholder-image-1}}
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+      {{/placeholder-image-1}}
+      {{#placeholder-image-2}}
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-2 }}"></div>
+      {{/placeholder-image-2}}
+    </div><!-- end placeholderMaster -->
+    <div class="page">
+
+      <div class="bleed center-children">
+
+        <div class="container fit">
+          <div class="header">
+            <div class="header__content">
+              {{#UN_pre-heading--fds}}
+              <div class="preheading">
+                <div style="max-height: 1.5em;">
+                  <div class="check-overflow">            
+                    {{{ UN_pre-heading--fds }}}
+                  </div> <!--check-overflow-->
+                </div><!--max-height-->         
+              </div><!--preheading-->
+              {{/UN_pre-heading--fds}}
+              {{#UN_heading--fds}}
+              <div class="heading">
+                <div style="max-height: 3.7em;">
+                  <div class="check-overflow">  
+                    {{{ UN_heading--fds }}}
+                  </div> <!--check-overflow-->
+                </div><!--max-height-->  
+              </div><!--heading-->
+              {{/UN_heading--fds}}
+            </div><!--header__content-->
+            <div class="logo__container">
+              <img src="{{ UN_logo-option--fds }}" class="logo"><!--logo-->
+            </div><!--logo__container-->
+          </div><!--header-->
+          <div class="body">
+            <div class="body__top">
+              <div class="intro__container">
+                <div class="intro">
+                  {{#spreadsheet.UN_intro-section--fds}}
+                  <div class="intro__item">
+                    <div style="max-height: 1.4em;">
+                      <div class="check-overflow">  
+                        {{{ UN_intro-item--fds }}}
+                      </div> <!--check-overflow-->
+                    </div><!--max-height-->  
+                  </div><!--intro__item-->  
+                  {{/spreadsheet.UN_intro-section--fds}}
+                </div><!--intro-->
+                {{#UN_intro-disclaimer--fds}}
+                <div class="intro__disclaimer">
+                  <div style="max-height: 4em;">
+                    <div class="check-overflow">  
+                      {{{ UN_intro-disclaimer--fds }}}
+                    </div> <!--check-overflow-->
+                  </div><!--max-height--> 
+                </div><!--intro__disclaimer-->
+                {{/UN_intro-disclaimer--fds}}
+              </div><!--intro__container-->
+              <div class="snapshot__container">
+                {{#UN_snapshot-copy--fds}}
+                <div class="snapshot">
+                  <div style="max-height: 14em;">
+                    <div class="check-overflow">  
+                      {{{ UN_snapshot-copy--fds }}}
+                    </div> <!--check-overflow-->
+                  </div><!--max-height-->  
+                </div><!--snapshot-->
+                {{/UN_snapshot-copy--fds}}
+              </div><!--snapshot__container-->
+            </div><!--body__top-->
+            <div class="body__main" data-order="{{UN_front-page-columns--fds }}">
+              <div class="body__column">
+                <div style="max-height: 7rem;">
+                  <div class="check-overflow">  
+                    {{{ UN_front-page-column-1-copy--fds }}}
+                  </div> <!--check-overflow-->
+                </div><!--max-height--> 
+              </div> <!-- body__column -->
+              <div class="body__column u-body__columnMargin--{{UN_front-page-columns--fds }}">
+                <div style="max-height: 7rem;">
+                  <div class="check-overflow">  
+                    {{{ UN_front-page-column-2-copy--fds }}}
+                  </div> <!--check-overflow-->
+                </div><!--max-height--> 
+              </div> <!-- body__column -->
+              <div class="body__column body__column--{{UN_front-page-columns--fds }}{{^UN_front-page-columns--fds }}2{{/UN_front-page-columns--fds }} u-body__columnMargin--{{UN_front-page-columns--fds }}">
+                <div style="max-height: 7rem;">
+                  <div class="check-overflow">  
+                    {{{ UN_front-page-column-3-copy--fds }}}
+                  </div> <!--check-overflow-->
+                </div><!--max-height--> 
+              </div> <!-- body__column -->
+            </div><!--body__main-->
+          </div><!--body-->
+          <div class="footer footer--primary">
+            {{#UN_url--fds}}
+            <div class="footer__url">
+              <div style="max-height: 1.5em;">
+                <div class="check-overflow">              
+                  {{{ UN_url--fds }}}
+                </div> <!--check-overflow-->
+              </div><!--max-height-->          
+            </div><!--footer__url-->
+            {{/UN_url--fds}}
+          </div><!--footer-->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <!--page 2-->
+    <div class="page">
+
+      <div class="bleed center-children">
+
+        <div class="container fit">
+
+          <div class="body body--secondary {{ UN_page-layout--fds }}{{^UN_page-layout--fds }}body--horizontal{{/UN_page-layout--fds }} {{UN_image-position--fds}}{{^UN_image-position--fds}}position-right{{/UN_image-position--fds}}">
+            <div class="body__main body__main--secondary body__main--{{{ UN_copy-columns--fds }}}{{^UN_copy-columns--fds }}2{{/UN_copy-columns--fds }} ">
+              <div class="body__column">
+                <div class="max-height {{^UN_hero-image--fds }}u-max-height{{/UN_hero-image--fds}}">
+                  <div class="check-overflow">  
+                    {{{ UN_back-page-column-1-copy--fds }}}
+                  </div> <!--check-overflow-->
+                </div><!--max-height--> 
+              </div> <!-- body__column -->
+              <div class="body__column u-body__column--hide">
+                <div class="max-height {{^UN_hero-image--fds }}u-max-height{{/UN_hero-image--fds}}">
+                  <div class="check-overflow">  
+                    {{{ UN_back-page-column-2-copy--fds }}}
+                  </div> <!--check-overflow-->
+                </div><!--max-height--> 
+              </div> <!-- body__column -->
+              <div class="body__column  body__column--{{{UN_copy-columns--fds}}}{{^UN_copy-columns--fds}}2{{/UN_copy-columns--fds}} u-body__column--hide">
+                <div class="max-height {{^UN_hero-image--fds }}u-max-height{{/UN_hero-image--fds}}">
+                  <div class="check-overflow">  
+                    {{{ UN_back-page-column-3-copy--fds }}}
+                  </div> <!--check-overflow-->
+                </div><!--max-height--> 
+              </div> <!-- body__column -->
+            </div><!--body__main-->
+            <div class="hero {{^UN_hero-image--fds }}u-hero-hide{{/UN_hero-image--fds}}">
+              {{{ UN_hero-image--fds }}}
+              {{#UN_caption--fds}}
+              <div class="hero__caption">
+                <div style="max-height: 7em;">
+                  <div class="check-overflow">    
+                    {{{ UN_caption--fds }}}
+                  </div> <!--check-overflow-->
+                </div><!--max-height--> 
+              </div><!--hero__caption-->
+              {{/UN_caption--fds}}
+            </div><!--hero-->
+          </div><!--body-->
+          <div class="footer footer--secondary">
+            <div class="footer__col footer__col--primary">
+              {{#UN_cta--fds }}
+              <div class="cta">        
+                <div style="max-height: 2.8em;">
+                  <div class="check-overflow">
+                    {{{ UN_cta--fds }}}
+                  </div> <!--check-overflow-->
+                </div><!--max-height--> 
+              </div><!--cta-->
+              {{/UN_cta--fds }}
+              {{#UN_information--fds}}
+              <div class="footer__info">
+                <div style="max-height: 2.8em;">
+                  <div class="check-overflow">                
+                    {{{ UN_information--fds }}}            
+                  </div> <!--check-overflow-->
+                </div><!--max-height--> 
+              </div><!--footer__info-->
+              {{/UN_information--fds}}
+            </div><!--footer__col footer__col--primary-->
+            <div class="footer__col footer__col--secondary">
+              {{#UN_disclaimer--fds}}
+              <div class="footer__disclaimer">
+                <div style="max-height: 8.5em;">
+                  <div class="check-overflow">                  
+                    {{{ UN_disclaimer--fds }}}
+                  </div> <!--check-overflow-->
+                </div><!--max-height-->      
+                <br/>
+                <br/>
+                <span class="date__label">Information correct at time of printing</span><!--date__label-->
+                <span class="date js-date"> XX/XX/XX </span><!--date-->
+                <div class="cricos">{{{UN_cricos--fds}}}</div><!--cricos-->
+              </div><!--footer__disclaimer-->
+              {{/UN_disclaimer--fds}}
+              {{#UN_url--fds}}
+              <div class="footer__url">
+                <div style="max-height: 1.5em;">
+                  <div class="check-overflow">              
+                    {{{ UN_url--fds }}}
+                  </div> <!--check-overflow-->
+                </div><!--max-height-->          
+              </div><!--footer__url-->
+              {{/UN_url--fds}}
+            </div><!--footer__col footer__col--secondary-->
+          </div><!--footer-->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};                                      
+    </script>
+    <script src="main.js"></script>   
+    <script src="prefixfree.js"></script>
+    <script src="placeholder-controller.js"></script>
+    <script src="char-limit.js"></script>
+    <script src="check-export-mode.js"></script>
+    <script src="check-height.js"></script>    
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.3.min.js" type="text/javascript"></script>
+    <script>
+     
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));
+        unisaFormat('.heading');
+        unisaFormat('.body__column');
+      } setInterval(loop, 1000);  
+    
+
+      // Fix for the resizable background images - fullscreen and digital vairaitons only
+      function checkCrop() {
+        if (window.showCrop === true) {
+        } else {
+          [].forEach.call(document.querySelectorAll('.outfit-resizable-background'), function (el) {
+            el.parentNode.style.left = '0';
+            el.parentNode.style.right = '0';
+            el.parentNode.style.top = '0';
+            el.parentNode.style.bottom = '0';
+            el.parentNode.style.width = '100%';
+            el.parentNode.style.height = '100%';
+          });
+        }
+      }
+
+      function unisaFormat(selector) {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(element => {
+          const elementHTML = element.innerHTML;
+          const formated = elementHTML.replace(/unisa|uni sa/gi, '<span style="text-transform: none;">UniSA</span>');
+
+          element.innerHTML = formated;
+        });
+      }
+
+      unisaFormat('.heading');      
+      unisaFormat('.body__column');
+
+      placeholderController();
+      checkCrop();  
+      checkExport(); 
+      charLimit();
+
+
+      function printDate(){
+        const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        const now = new Date();
+        const month = months[now.getMonth()]; 
+        const year = now.getFullYear();
+        const date = `(${month} ${year})`; 
+        document.getElementsByClassName('js-date')[0].innerHTML = date;
+      }
+
+      printDate();
+
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      /*
+        TextFit.fit({
+          selector: '.textFit'
+        });      
+        */
+
+    </script>
+
+    <script type="text/javascript">
+      // Add many fallbacks for Print Ready
+      document.addEventListener('DOMContentLoaded', function(event) {
+        document.dispatchEvent(new Event('printready'));
+      });
+
+      setTimeout(function() {
+        document.dispatchEvent(new Event('printready'));
+      }, 500);
+
+      document.dispatchEvent(new Event('printready'));
+    </script>    
+
+  </body>
+</html>
