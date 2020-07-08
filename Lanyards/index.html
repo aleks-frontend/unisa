@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html async data-sign="OSB/OSS">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="placeholder-controller.css">
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/UniSA-Altis/stylesheet.css');
+
+      html {
+        font-family: 'Altis UniSA';
+        font-size: 11pt;
+        color: #fff;
+      }
+
+      .overflow {
+        border: none;
+        box-shadow: 0 0 0 0.0362rem red;
+        background: rgba(255, 0, 0, 0.4);
+        position: relative;
+        z-index: 999;}
+      .overflow h1, 
+      .overflow h2, 
+      .overflow h3, 
+      .overflow h4, 
+      .overflow h5, 
+      .overflow h6, 
+      .overflow p, 
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: '+';
+        position: absolute;
+        z-index: 5;
+        top: 0.1rem;
+        right: 0.1rem;
+        height: .3107rem;
+        width: .3107rem;
+        border: 0.01rem solid red;
+        color: red;
+        padding: 0.01rem 0.01rem 0.01rem 0.0155rem;
+        box-sizing: border-box;
+        font-size: 0.2279rem;
+        text-align: center;
+        line-height: .2693rem;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: 'There is overset content in this column. Please remove it';
+        position: absolute;
+        top: 0.5rem;
+        right:  0.1rem;
+        background-color: black;
+        color: white;
+        border-radius: 0.01rem;
+        padding: 0.2rem 0.2rem;        
+        box-sizing: border-box;
+        font-size: 0.35rem;
+        font-weight: 400;     
+        text-align: right;
+        width: 6rem;
+        line-height: 0.45rem;
+      }
+
+      .overflow[data-char-limit]:hover:after {
+        content: 'Character limit exceeded';        
+      } 
+
+      .is-export-mode .placeholder__container,
+      .is-export-mode .placeholder__trigger {
+        display: none;
+      }
+
+      .page {
+        background: {{{account.colors.primary}}};
+      }
+
+      .page--back {
+        background: #fff;
+      }
+
+      .fit--back {
+        padding-top: 62pt;
+      }
+
+      .drillingSpace {
+        position: absolute;
+        top: 28pt;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 19pt;
+        height: 19pt;
+        background: gray;
+        border-radius: 50%;
+      }
+
+      .heading {
+        position: absolute;
+        top: 78.3pt;
+        width: 100%;
+        font-size: 29.3pt;
+        line-height: 1.3em;
+        font-weight: 500;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 1.1pt;
+      }
+
+      .subheading {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        bottom: 120pt;
+        width: 100%;
+        padding: 9pt 23pt;
+        background: #fff;
+        font-size: 14.1pt;
+        text-align: center; 
+        color: #000;
+        text-transform: uppercase;
+        letter-spacing: -0.5pt;
+      }
+
+      .subheading--secondary {
+        position: relative;
+        bottom: auto;
+        margin-bottom: 14pt;
+        background: #155fa5;
+        color: #fff;
+      }
+
+      .logo {
+        position: absolute;
+        bottom: 20.4pt;
+        left: 50%;
+        transform: translateX(-50%);
+        max-height: 87.4pt;
+        max-width: 87.4pt;
+      }
+
+      .info {
+        position: relative;
+        padding: 0 25pt;
+        font-size: 10pt;
+        color: #000;
+        letter-spacing: -0.2pt;
+      }
+
+      .info ul {
+        margin: 1.9pt 0 8.7pt 11.6pt;
+      }
+
+      .info li {
+        position: relative;
+        line-height: 1.25em;
+      }
+
+      .info li::before {
+        content: '.';
+        position: absolute;
+        top: -3.2pt;
+        left: -5.4pt;
+      }
+
+      .lanyardsMaster {
+        display: none;
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="{{ placeholder-toggle }}" data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      {{#placeholder-image-1}}
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+      {{/placeholder-image-1}}
+      {{#placeholder-image-2}}
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-2 }}"></div>
+      {{/placeholder-image-2}}
+    </div><!-- end placeholderMaster -->
+
+    <div class="lanyardsMaster"> 
+      <div class="lanyardsMaster__item js-src" data-target="heading">{{{ UN_heading--ly }}}</div>
+      <div class="lanyardsMaster__item js-src" data-target="logo">{{{ UN_logo--ly }}}</div>
+      <div class="lanyardsMaster__item js-src" data-target="copy">{{{ UN_back-page-copy--ly }}}</div>
+    </div> <!-- certificateMater -->
+
+    {{ #spreadsheet.UN_role-subheading--ly }}
+    <div class="page">
+
+      <div class="bleed center-children">
+
+        <div class="container fit">
+
+          <div class="drillingSpace"> </div><!-- drillingSpace -->
+          {{ #UN_heading--ly }}
+          <div class="heading">
+            <div style="max-height: 2.6em">
+              <div class="check-overflow">
+                <span class="js-target" data-target="heading"></span>
+              </div><!-- check-overflow -->
+            </div> <!-- max-height -->
+          </div> <!-- heading -->
+          {{ /UN_heading--ly }}
+          {{ #UN_role--ly }}
+          <div class="subheading">
+            <div style="max-height: 2.9em">
+              <div class="check-overflow">
+                {{{ UN_role--ly }}}
+              </div><!-- check-overflow -->
+            </div> <!-- max-height -->
+          </div> <!-- subbheading -->
+          {{ /UN_role--ly }}
+          <img src="#" class="logo js-target" data-target="logo"/>
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+    <div class="page page--back">
+
+      <div class="bleed center-children">
+
+        <div class="container fit fit--back">
+
+          <div class="drillingSpace"> </div><!-- drillingSpace -->
+          <div class="wrapper">
+            <div style="max-height: 14.5rem">
+              <div class="check-overflow">
+                {{ #UN_role--ly }}
+                <div class="subheading subheading--secondary">
+                  <div style="max-height: 2.9em">
+                    <div class="check-overflow">
+                      {{{ UN_role--ly }}}
+                    </div><!-- check-overflow -->
+                  </div> <!-- max-height -->
+                </div> <!-- subbheading -->
+                {{ /UN_role--ly }}
+                {{ #UN_back-page-copy--ly }}
+                <div class="info">
+                  <div style="max-height: 200pt">
+                    <div class="check-overflow">
+                      <span class="js-target" data-target="copy"></span>
+                    </div><!-- check-overflow -->
+                  </div> <!-- max-height -->
+                </div><!-- info -->
+                {{ /UN_back-page-copy--ly }}
+              </div><!-- end check-overflow -->
+            </div><!-- end max-height -->
+          </div><!-- end wrapper -->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+    {{ /spreadsheet.UN_role-subheading--ly }}
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};                                      
+    </script>
+    <script src="main.js"></script>   
+    <script src="prefixfree.js"></script>
+    <script src="placeholder-controller.js"></script>
+    <script src="char-limit.js"></script>
+    <script src="check-export-mode.js"></script>
+    <script src="check-height.js"></script>    
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.3.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      // Add many fallbacks for Print Ready
+      document.addEventListener('DOMContentLoaded', function(event) {
+        document.dispatchEvent(new Event('printready'));
+      });
+
+      setTimeout(function() {
+        document.dispatchEvent(new Event('printready'));
+      }, 2000);
+
+      document.dispatchEvent(new Event('printready'));
+    </script>
+    <script>
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));
+        dynamicInject();
+        unisaFormat('.heading');
+        unisaFormat('.subheading');        
+      } setInterval(loop, 1000);  
+
+      // Fix for the resizable background images - fullscreen and digital vairaitons only
+      function checkCrop() {
+        if (window.showCrop === true) {
+        } else {
+          [].forEach.call(document.querySelectorAll('.outfit-resizable-background'), function (el) {
+            el.parentNode.style.left = '0';
+            el.parentNode.style.right = '0';
+            el.parentNode.style.top = '0';
+            el.parentNode.style.bottom = '0';
+            el.parentNode.style.width = '100%';
+            el.parentNode.style.height = '100%';
+          });
+        }
+      }
+
+      function unisaFormat(selector) {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(element => {
+          const elementHTML = element.innerHTML;
+          const formated = elementHTML.replace(/unisa|uni sa/gi, '<span style="text-transform: none;">UniSA</span>');
+
+          element.innerHTML = formated;
+        });
+      }
+
+      unisaFormat('.heading');
+      unisaFormat('.subheading');      
+
+      placeholderController();
+      checkCrop();  
+      checkExport(); 
+      charLimit();
+
+      function dynamicInject() {
+        const sources = document.querySelectorAll('.js-src');
+        const targets = document.querySelectorAll('.js-target');
+
+        sources.forEach(source => {
+          const targetInfo = source.dataset.target;
+          const injectValue = source.innerHTML;
+
+          targets.forEach(target => {
+            if ( target.dataset.target == targetInfo ) {
+              if ( targetInfo == 'logo' ) {
+                target.src = source.innerText;
+              } else {
+                target.innerHTML = injectValue; 
+              }
+            }
+          });
+        });
+      }    
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      /*
+          TextFit.fit({
+            selector: '.textFit'
+          });      
+          */
+
+    </script>
+
+    <script type="text/javascript">
+      // Add many fallbacks for Print Ready
+      document.addEventListener('DOMContentLoaded', function(event) {
+        document.dispatchEvent(new Event('printready'));
+      });
+
+      setTimeout(function() {
+        document.dispatchEvent(new Event('printready'));
+      }, 1500);
+
+      document.dispatchEvent(new Event('printready'));
+    </script>    
+
+  </body>
+</html>

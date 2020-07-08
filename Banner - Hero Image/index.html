@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html data-sign="OSB">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="placeholder-controller.css">
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/UniSA-Altis/stylesheet.css');
+
+      html {
+        font-family: 'Altis UniSA';
+        font-size: 11pt;
+        color: #fff;
+      }
+
+      .is-export-mode .placeholder__container,
+      .is-export-mode .placeholder__trigger {
+        display: none;
+      }   
+
+      .fit {
+        background: url(https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/6d3c7226f105aaaa2bc636861384a596/banner-bg-big-2.jpg) no-repeat;
+        background-position: center bottom;
+        background-size: 100%;
+        background-color: {{{account.colors.primary}}};
+      }
+
+      .container{
+        padding-top: 191pt;
+        
+      }
+      
+      .bannerPrintReady--true .container{
+        height: calc(100% - 250mm);
+      }
+      
+      .logoContainer{
+        width: 1313pt;
+        margin-left: 259pt;
+      }
+      
+      .logoContainer .logo{
+        max-width: 100%;
+        max-height: 100%;
+      }      
+
+      .hero {
+        margin-top: 145pt;
+        width: 100%;
+        height: 2181pt;
+        width: 100%;
+        clip-path: polygon(100% 0,0 6.9%,0 72.5%,100% 99.7%,95.9% 99%,0 81.3%, 0 92.1%, 100% 100%);
+        overflow: hidden;
+        position: relative;
+        margin-bottom: 23.1em;
+      }
+      
+      .info {
+        position: absolute;
+        top: 30.1em;
+        left: 353pt;
+        width: 75%;
+        font-family: 'Altis UniSA Book';
+        font-size: 113.8pt;
+        font-weight: 500;
+        letter-spacing: 1.5pt;
+        line-height: 1.2em;
+      }
+      
+      h1{
+        font-family: 'Altis UniSA Book';
+        font-weight: bold;
+        margin-bottom: 0.1em;
+      }
+      
+      .heading{
+        font-size: {{{headingFontSize}}}em;/*293.2px*/
+        line-height: 1.2em;
+        text-transform: uppercase;
+        margin-bottom: 1.2em;
+      }
+      
+       .reposition-fix {
+         position: absolute;
+         top: 0;
+         left: 0;
+         bottom: 0;
+         right: 0;
+         width: 100%;
+         height: 100%;
+         overflow: hidden;
+      }
+      
+      .url{
+        font-weight: bold;
+      }
+      
+      .customPrintMargin--true .container{
+        margin-left: 5mm;
+        margin-right: 5mm;
+        margin-top: 5mm;
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="{{ placeholder-toggle }} bannerPrintReady--{{{showCustomBleed}}} customPrintMargin--{{customPrintMargin}}" data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      {{#placeholder-image-1}}
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+      {{/placeholder-image-1}}
+    </div><!-- end placeholderMaster -->
+
+    <div class="page">
+
+      <div class="bleed center-children">
+
+        <div class="container fit">
+          <div class="logoContainer">
+            <img src="{{{ UN_logo-option--bn }}}" alt="logo" class="logo" />
+          </div>
+          <!--<img src="{{{ UN_logo-option--bn }}}" alt="logo" class="logotwo" />-->
+
+          <div class="hero"> 
+            <div class="reposition-fix">
+            {{{ UN_hero-image--bn }}} 
+            </div><!--reposition-fix-->
+          </div> <!-- hero -->
+          <div class="info">
+            <div class="heading" data-max-line="4">
+                <span>{{{ UN_heading--bn }}}</span>
+            </div> <!-- max-height-->
+            <div data-max-line="1" class="url textFit">
+                {{{ UN_url--bn }}}
+            </div> <!-- max-height-->
+          </div> <!-- hero -->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};                                      
+    </script>
+    <script src="https://outfit-assets-production.s3.amazonaws.com/scripts/templateStarter/overflowChecks/v1.0/max-line-check-v1.0.js" type="text/javascript"></script>
+    <script src="https://outfit-assets-production.s3.amazonaws.com/scripts/clients/universityOfSouthAustralia/unisaTextFormatter/v1.0/unisaFormatter-v1.0.js" type="text/javascript"></script>
+    <script src="main.js"></script>   
+    <script src="prefixfree.js"></script>
+    <script src="placeholder-controller.js"></script>
+    <!--<script src="char-limit.js"></script>-->
+    <script src="check-export-mode.js"></script>
+    <!--<script src="check-height.js"></script>-->
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.3.min.js" type="text/javascript"></script>
+    
+    <script>
+      /*function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));
+      } setInterval(loop, 1000);  */
+
+      // Fix for the resizable background images - fullscreen and digital vairaitons only
+      function checkCrop() {
+        if (window.showCrop === true) {
+        } else {
+          [].forEach.call(document.querySelectorAll('.outfit-resizable-background'), function (el) {
+            el.parentNode.style.left = '0';
+            el.parentNode.style.right = '0';
+            el.parentNode.style.top = '0';
+            el.parentNode.style.bottom = '0';
+            el.parentNode.style.width = '100%';
+            el.parentNode.style.height = '100%';
+          });
+        }
+      }
+      placeholderController();
+      checkCrop();  
+      checkExport();
+      
+      function loop() {
+        setupUnisaFormat('.heading');
+      } setInterval(loop, 1000);
+      setupUnisaFormat('.heading');
+      
+      const overflowObserver2 = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+        });
+      });
+      
+      overflowObserver2.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      
+        TextFit.fit({
+          selector: '.textFit'
+        });      
+        
+      
+        var documentHeight = document.getElementsByClassName("container")[0].offsetHeight;
+      
+      console.log(documentHeight);
+      
+      	if(documentHeight > 7583){ //> 2001mm - If true must be the print copy
+        	document.body.classList.add("bannerPrintReady");
+        }
+    </script>
+
+
+  </body>
+</html>

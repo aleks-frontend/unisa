@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html data-sign="OSS" async>
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="placeholder-controller.css">
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/UniSA-Altis/stylesheet.css');
+
+      html {
+        font-family: 'Altis UniSA';
+        font-size: 11pt;
+        color: {{{account.colors.dark-blue-tint-1}}};
+      }
+
+      .overflow {
+        border: none;
+        box-shadow: 0 0 0 0.0362rem red;
+        background: rgba(255, 0, 0, 0.4);
+        position: relative;
+        z-index: 999;}
+      .overflow h1, 
+      .overflow h2, 
+      .overflow h3, 
+      .overflow h4, 
+      .overflow h5, 
+      .overflow h6, 
+      .overflow p, 
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: '+';
+        position: absolute;
+        z-index: 5;
+        top: 0.1rem;
+        right: 0.1rem;
+        height: .3107rem;
+        width: .3107rem;
+        border: 0.01rem solid red;
+        color: red;
+        padding: 0.01rem 0.01rem 0.01rem 0.0155rem;
+        box-sizing: border-box;
+        font-size: 0.2279rem;
+        text-align: center;
+        line-height: .2693rem;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: 'There is overset content in this column. Please remove it';
+        position: absolute;
+        top: 0.5rem;
+        right:  0.1rem;
+        background-color: black;
+        color: white;
+        border-radius: 0.01rem;
+        padding: 0.2rem 0.2rem;        
+        box-sizing: border-box;
+        font-size: 0.35rem;
+        font-weight: 400;     
+        text-align: right;
+        width: 6rem;
+        line-height: 0.45rem;
+      }
+
+      .overflow[data-char-limit]:hover:after {
+        content: 'Character limit exceeded';        
+      } 
+
+      .is-export-mode .placeholder__container,
+      .is-export-mode .placeholder__trigger {
+        display: none;
+      }   
+
+      .fit {
+        display: flex;
+        flex-direction: column;
+        padding: 1.3547rem;
+      }
+
+      .theme--blue .fit {
+        background: url(https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/bdddd0a07b723e9faad6b52e1b5e840d/signage-bg-blue-final.jpg) no-repeat center;
+        background-size: cover;
+        color: #fff;
+      }
+
+      .theme--white .fit {        
+        background: url(https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/3e9b18253b389e3775f37e2ef9c1e70a/signage-bg-white-final.jpg) no-repeat center;
+        background-size: cover;
+        color: {{{account.colors.primary}}};
+      }
+
+      .graphicShape {
+        position: absolute;
+        mix-blend-mode: multiply;
+      }      
+
+      .graphicShape--primary {
+        left: -6.15rem;
+        top: -0.5rem;
+        width: 149%;
+      }                
+
+      .header {
+        position: relative;
+        margin-bottom: 0.9109rem;
+        height: 2.4524rem;  
+      }
+
+      .logo {
+        position: absolute;
+        right: -0.5138rem;
+        top: -0.7941rem;
+        width: 3.9005rem;
+        display: none;
+      }
+
+      .theme--blue .logo--white {
+        display: block;
+      }
+
+      .theme--white .logo--blue {
+        display: block;
+        max-width: 2.8rem;
+        right: 0.0862rem;
+        top: 0.04rem;
+      }
+
+      .body {
+        position: relative;
+      }
+
+      .body {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+
+      .headline__container {
+        margin-bottom: 1.05rem;
+        font-size: 0.795rem;
+        font-weight: bold;
+      }
+
+      .headline {
+        text-transform: uppercase;
+      }
+
+      .content {
+        font-size: 0.7964rem;
+        line-height: 1.21em;
+      }
+
+      .content__maxHeight {
+        max-height: 8rem;
+      }
+
+      .content__maxHeight.arrow-hide {
+        max-height: 12rem;
+      }
+
+      p {
+        margin-bottom: 0.0109rem !important; 
+        font-family: 'Altis UniSA Light TTF';
+        font-weight: 300;
+        font-size: 0.7801rem;
+        letter-spacing: 0.01635rem;
+      }
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+
+      strong {
+        font-family: 'Altis UniSA'; 
+        font-size: 0.7637rem;
+      }
+
+      ul {
+        list-style-type: disc;
+        margin-left: 0.95rem;
+      }
+
+      ul li {
+        margin-bottom: 0 !important;
+        font-size: 0.6306rem;
+      }
+
+      .arrow__container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+
+      .arrow__container.arrow-hide {
+        display: none;
+      }
+
+      .arrow {
+        display: flex;
+        justify-content: center;
+        width: 3.5rem;
+        height: 3.5rem;
+        border: 0.2803rem solid #fff;
+        border-radius: 50%;
+        transform: translateX(-6%);
+      }
+
+      .theme--white .arrow {
+        border-color: #144092;
+      }         
+
+      .arrow--arrow-hide {
+        display: none;
+      }
+
+      .arrow__icon {
+        width: 1rem;
+      }       
+
+      .theme--white .arrow__icon .cls-1 {
+        stroke: #144092;
+      }
+
+      .arrow__icon--south {
+        transform: rotate(90deg);
+      }
+
+      .arrow__icon--west {
+        transform: rotate(180deg);
+      }
+
+      .arrow__icon--north {
+        transform: rotate(270deg);
+      }
+
+      .arrow__icon--east {
+        transform: rotate(0deg);
+      }      
+
+      .theme--blue .arrow__container {
+        margin-top: 0.65rem;
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="{{ placeholder-toggle }} {{#UN_theme-s}}theme--{{UN_theme-s}}{{/UN_theme-s}} {{^UN_theme-s}}theme--blue{{/UN_theme-s}}" data-crop="{{show-crop}}"> 
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      {{#placeholder-image-1}}
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+      {{/placeholder-image-1}} 
+    </div><!-- end placeholderMaster -->
+
+    <!-- PAGE 1 -->
+    <div class="page">
+      <div class="bleed center-children">
+        <div class="container fit"> 
+          <div class="header">
+            <img src="{{account.logos.white_portrait}}" alt="logo" class="logo logo--white">
+            <img src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/6cb681363e63fc6fc738e7aaf4b2a56d/logo-stacked.svg" alt="logo" class="logo logo--blue">
+          </div><!-- end header -->
+          <div class="body">
+            <div style="max-height: 1.8rem;">
+              <div class="check-overflow">
+                <div class="headline__container">
+                  <div class="headline" style="font-size: {{UN_headline-size}}{{^UN_headline-size}}100{{/UN_headline-size}}%; line-height: 1em;">
+                    {{{UN_headline--s}}}
+                  </div><!-- end headline --> 
+                </div><!-- end headline__container -->
+              </div><!-- end max-height -->
+            </div><!-- end check-overflow -->
+            <div class="content__maxHeight {{UN_arrow-direction-s}}">
+              <div class="check-overflow">
+                <div class="content">{{{UN_copy--s}}}</div><!-- end content -->
+              </div><!-- end check-overflow -->
+            </div><!-- end content__maxHeight --> 
+            <div class="arrow__container {{UN_arrow-direction-s}}">
+              <div class="arrow inter arrow--{{UN_arrow-direction-s}}">
+                <svg id="Layer_1" class="arrow__icon {{#UN_arrow-direction-s}}arrow__icon--{{UN_arrow-direction-s}}{{/UN_arrow-direction-s}}" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58.77 104.13"><defs><style>.cls-1{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:12px;}</style></defs><title>arrow-icon</title><polyline class="cls-1" points="6 6 52.77 52.77 7.42 98.13"/></svg>
+              </div><!-- end arrow -->
+            </div><!-- end arrow__container -->
+          </div><!-- end body -->
+        </div><!--container fit fit--front -->
+      </div><!--bleed-->
+    </div><!--page-->
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};                                      
+    </script>
+    <script src="main.js"></script>   
+    <script src="prefixfree.js"></script>
+    <script src="placeholder-controller.js"></script>
+    <script src="char-limit.js"></script>
+    <script src="check-export-mode.js"></script>
+    <script src="check-height.js"></script>    
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.3.min.js" type="text/javascript"></script>
+    <script>
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));
+        unisaFormat('.headline');        
+      } setInterval(loop, 1000);  
+
+      // Fix for the resizable background images - fullscreen and digital vairaitons only
+      function checkCrop() {
+        if (window.showCrop === true) {
+        } else {
+          [].forEach.call(document.querySelectorAll('.outfit-resizable-background'), function (el) {
+            el.parentNode.style.left = '0';
+            el.parentNode.style.right = '0';
+            el.parentNode.style.top = '0';
+            el.parentNode.style.bottom = '0';
+            el.parentNode.style.width = '100%';
+            el.parentNode.style.height = '100%';
+          });
+        }
+      } 
+
+      function unisaFormat(selector) {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(element => {
+          const elementHTML = element.innerHTML;
+          const formated = elementHTML.replace(/unisa|uni sa/gi, '<span style="text-transform: none;">UniSA</span>');
+
+          element.innerHTML = formated;
+        });
+      }
+
+      unisaFormat('.headline');      
+
+      placeholderController();
+      checkCrop();  
+      checkExport(); 
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      /*
+      TextFit.fit({
+        selector: '.textFit'
+      });      
+      */
+
+    </script>
+
+    <script type="text/javascript">
+      // Add many fallbacks for Print Ready
+      document.addEventListener('DOMContentLoaded', function(event) {
+        document.dispatchEvent(new Event('printready'));
+      });
+
+      setTimeout(function() {
+        document.dispatchEvent(new Event('printready'));
+      }, 500);
+
+      document.dispatchEvent(new Event('printready'));
+    </script>    
+
+
+  </body>
+</html>
